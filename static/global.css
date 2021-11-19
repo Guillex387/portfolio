@@ -1,0 +1,47 @@
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: linear-gradient(140deg, #0668b9, #00ce2d);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.transition-left {
+  animation-name: transition-left;
+}
+
+.transition-right {
+  animation-name: transition-right;
+}
+
+.transition-right,
+.transition-left {
+  animation-duration: 2s;
+}
+
+@keyframes transition-left {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes transition-right {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
