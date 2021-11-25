@@ -6,8 +6,9 @@ const githubAPI = new GithubAPI();
 const notionAPI = new NotionAPI();
 const app = express();
 
-app.get('/:name', async (req, res) => {
-  let program = await notionAPI.getProgram(req.params.name);
+app.get('/', async (req, res) => {
+  let { name = '' } = req.query;
+  let program = await notionAPI.getProgram(name as string);
   if (!program) return res.status(404).send('Program not found');
   if (program['repo-name']) {
     let repo = await githubAPI.getRepo(program['repo-name'], program.owner);
@@ -19,8 +20,9 @@ app.get('/:name', async (req, res) => {
   return res.json(program);
 });
 
-app.get('/:name/releases', async (req, res) => {
-  let program = await notionAPI.getProgram(req.params.name);
+app.get('/releases', async (req, res) => {
+  let { name = '' } = req.query;
+  let program = await notionAPI.getProgram(name as string);
   if (!program) return res.status(404).send('Program not found');
   if (program['repo-name']) {
     let releases = await githubAPI.getReleases(program['repo-name'], program.owner);
@@ -30,8 +32,9 @@ app.get('/:name/releases', async (req, res) => {
   return res.status(400).send('The program not have releases');
 });
 
-app.get('/:name/releases/last', async (req, res) => {
-  let program = await notionAPI.getProgram(req.params.name);
+app.get('/releases/last', async (req, res) => {
+  let { name = '' } = req.query;
+  let program = await notionAPI.getProgram(name as string);
   if (!program) return res.status(404).send('Program not found');
   if (program['repo-name']) {
     let release = await githubAPI.getLastRelease(program['repo-name'], program.owner);
