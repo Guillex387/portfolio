@@ -1,12 +1,12 @@
-import { Router } from 'express';
-import GithubAPI from '../lib/github';
+import express from 'express';
 import NotionAPI from '../lib/db';
+import GithubAPI from '../lib/github';
 
-const router = Router();
 const githubAPI = new GithubAPI();
 const notionAPI = new NotionAPI();
+const app = express();
 
-router.get('/:name', async (req, res) => {
+app.get('/:name', async (req, res) => {
   let program = await notionAPI.getProgram(req.params.name);
   if (!program) return res.status(404).send('Program not found');
   if (program['repo-name']) {
@@ -18,7 +18,8 @@ router.get('/:name', async (req, res) => {
   }
   return res.json(program);
 });
-router.get('/:name/releases', async (req, res) => {
+
+app.get('/:name/releases', async (req, res) => {
   let program = await notionAPI.getProgram(req.params.name);
   if (!program) return res.status(404).send('Program not found');
   if (program['repo-name']) {
@@ -28,7 +29,8 @@ router.get('/:name/releases', async (req, res) => {
   }
   return res.status(400).send('The program not have releases');
 });
-router.get('/:name/releases/last', async (req, res) => {
+
+app.get('/:name/releases/last', async (req, res) => {
   let program = await notionAPI.getProgram(req.params.name);
   if (!program) return res.status(404).send('Program not found');
   if (program['repo-name']) {
@@ -39,4 +41,4 @@ router.get('/:name/releases/last', async (req, res) => {
   return res.status(400).send('The program has not releases');
 });
 
-export default router;
+export default app;

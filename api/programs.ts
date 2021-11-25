@@ -1,12 +1,11 @@
-import { Router } from 'express';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 import NotionAPI from '../lib/db';
 import GithubAPI from '../lib/github';
 
-const router = Router();
 const githubAPI = new GithubAPI();
 const notionAPI = new NotionAPI();
 
-router.get('/', async (req, res) => {
+export default async (req: VercelRequest, res: VercelResponse) => {
   let dbPrograms = await notionAPI.getPrograms();
   let filter = req.query.released;
   if (filter === 'true') {
@@ -28,6 +27,4 @@ router.get('/', async (req, res) => {
     } else formattedPrograms.push(dbProgram);
   }
   res.json(formattedPrograms);
-});
-
-export default router;
+};

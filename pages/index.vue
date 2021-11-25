@@ -14,7 +14,7 @@
         beatae dolores harum odio ullam esse sed, dolore incidunt reiciendis iste, tempora consequuntur ad atque reprehenderit
         quibusdam velit nulla? Laborum corporis eaque totam amet ducimus quas rem id mollitia incidunt cupiditate, qui aut
         quisquam dolores maxime. Eum!"
-          :logo="logoUrl"
+          logo="/qpt.png"
         />
         <!-- Skills part -->
         <section class="transition-left pb-6 md:pb-12 mx-5 md:m-0">
@@ -54,7 +54,6 @@ import Program, { ProgramI, filterPrograms } from '@/components/Program.vue';
 
 interface State {
   loading: boolean;
-  logoUrl: string;
   releasedPrograms: ProgramI[] | null;
   prereleasedPrograms: ProgramI[] | null;
 }
@@ -71,19 +70,13 @@ export default Vue.extend({
   data(): State {
     return {
       loading: true,
-      logoUrl: '',
       releasedPrograms: null,
       prereleasedPrograms: null
     };
   },
   methods: {
-    async loadLogo() {
-      let logoRes = await fetch('/qpt.png');
-      if (!logoRes.ok) return alert('Error fetching data');
-      this.logoUrl = URL.createObjectURL(await logoRes.blob());
-    },
     async getPrograms() {
-      let response = await fetch('/api/programs');
+      let response = await fetch(`/api/programs`);
       if (!response.ok) return alert('Error fetching data');
       let programs: Object[] = await response.json();
       console.log(programs);
@@ -101,7 +94,7 @@ export default Vue.extend({
     }
   },
   mounted() {
-    Promise.all([this.loadLogo(), this.getPrograms()]).then(() => (this.loading = false));
+    this.getPrograms().then(() => (this.loading = false));
   }
 });
 </script>
