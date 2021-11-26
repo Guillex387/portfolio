@@ -76,65 +76,9 @@ export default Vue.extend({
   },
   methods: {
     async getPrograms() {
-      // let response = await fetch('/api/programs');
-      // if (!response.ok) return alert('Error fetching data');
-      // let programs: Object[] = await response.json();
-      let programs: Object[] = [
-        {
-          title: 'released_program',
-          released: true,
-          'repo-name': 'my_repo',
-          owner: 'User1234',
-          github_url: 'https://github.com/User1234/my_repo',
-          description: 'Some of the project'
-        },
-        {
-          title: 'unreleased_program',
-          released: false,
-          'repo-name': 'holamundo',
-          owner: 'User1234',
-          description: 'Some of the project',
-          'release-date': '2023-11-21',
-          github_url: 'https://github.com/User1234/my_repo'
-        },
-        {
-          title: 'unreleased_program',
-          released: false,
-          'repo-name': 'holamundo',
-          owner: 'User1234',
-          description: 'Some of the project',
-          'release-date': '2023-11-21',
-          github_url: 'https://github.com/User1234/my_repo'
-        },
-        {
-          title: 'unreleased_program',
-          released: false,
-          'repo-name': 'holamundo',
-          owner: 'User1234',
-          description: 'Some of the project',
-          'release-date': '2023-11-21',
-          github_url: 'https://github.com/User1234/my_repo'
-        },
-        {
-          title: 'unreleased_program',
-          released: false,
-          'repo-name': 'holamundo',
-          owner: 'User1234',
-          description: 'Some of the project',
-          'release-date': '2023-11-21',
-          github_url: 'https://github.com/User1234/my_repo'
-        },
-        {
-          title: 'unreleased_program',
-          released: false,
-          'repo-name': 'holamundo',
-          owner: 'User1234',
-          description: 'Some of the project',
-          'release-date': '2023-11-21',
-          github_url: 'https://github.com/User1234/my_repo'
-        }
-      ];
-      console.log(programs);
+      let response = await fetch('/api/programs');
+      if (!response.ok) return alert('Error fetching data');
+      let programs: Object[] = await response.json();
       let formattedPrograms: ProgramI[] = [];
       for (let i = 0; i < programs.length; i++) {
         const program = programs[i];
