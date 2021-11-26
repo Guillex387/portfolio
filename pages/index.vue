@@ -18,18 +18,18 @@
         />
         <!-- Skills part -->
         <section class="transition-left pb-6 md:pb-12 mx-5 md:m-0">
-          <Container v-if="releasedPrograms !== null" title="Programs">
-            <div class="flex justify-items-center justify-between flex-wrap">
-              <Program v-for="program in releasedPrograms" class="transition-left" :key="program.id" :obj="program" />
+          <Container class="z-index-10" v-if="releasedPrograms !== null" title="Programs">
+            <div class="flex justify-center md:justify-start flex-wrap">
+              <Program v-for="program in releasedPrograms" class="transition-left z-index-20" :key="program.id" :obj="program" />
             </div>
           </Container>
         </section>
         <section class="transition-right pb-6 md:pb-12 mx-5 md:m-0">
-          <Container v-if="prereleasedPrograms" title="Coming soon programs">
-            <div class="flex justify-items-center justify-between flex-wrap">
+          <Container class="z-index-10" v-if="prereleasedPrograms" title="Coming soon programs">
+            <div class="flex justify-center md:justify-start flex-wrap">
               <Program
                 v-for="program in prereleasedPrograms"
-                class="transition-right"
+                class="transition-right z-index-20"
                 :key="program.id"
                 transition="left"
                 :obj="program"
@@ -76,9 +76,64 @@ export default Vue.extend({
   },
   methods: {
     async getPrograms() {
-      let response = await fetch(`/api/programs`);
-      if (!response.ok) return alert('Error fetching data');
-      let programs: Object[] = await response.json();
+      // let response = await fetch('/api/programs');
+      // if (!response.ok) return alert('Error fetching data');
+      // let programs: Object[] = await response.json();
+      let programs: Object[] = [
+        {
+          title: 'released_program',
+          released: true,
+          'repo-name': 'my_repo',
+          owner: 'User1234',
+          github_url: 'https://github.com/User1234/my_repo',
+          description: 'Some of the project'
+        },
+        {
+          title: 'unreleased_program',
+          released: false,
+          'repo-name': 'holamundo',
+          owner: 'User1234',
+          description: 'Some of the project',
+          'release-date': '2023-11-21',
+          github_url: 'https://github.com/User1234/my_repo'
+        },
+        {
+          title: 'unreleased_program',
+          released: false,
+          'repo-name': 'holamundo',
+          owner: 'User1234',
+          description: 'Some of the project',
+          'release-date': '2023-11-21',
+          github_url: 'https://github.com/User1234/my_repo'
+        },
+        {
+          title: 'unreleased_program',
+          released: false,
+          'repo-name': 'holamundo',
+          owner: 'User1234',
+          description: 'Some of the project',
+          'release-date': '2023-11-21',
+          github_url: 'https://github.com/User1234/my_repo'
+        },
+        {
+          title: 'unreleased_program',
+          released: false,
+          'repo-name': 'holamundo',
+          owner: 'User1234',
+          description: 'Some of the project',
+          'release-date': '2023-11-21',
+          github_url: 'https://github.com/User1234/my_repo'
+        },
+        {
+          title: 'unreleased_program',
+          released: false,
+          'repo-name': 'holamundo',
+          owner: 'User1234',
+          description: 'Some of the project',
+          'release-date': '2023-11-21',
+          github_url: 'https://github.com/User1234/my_repo'
+        }
+      ];
       console.log(programs);
       let formattedPrograms: ProgramI[] = [];
       for (let i = 0; i < programs.length; i++) {

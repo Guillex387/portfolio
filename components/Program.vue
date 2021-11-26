@@ -1,16 +1,16 @@
 <template>
-  <div class="p-0.5 text-white">
+  <div class="m-1 text-white">
     <Container :title="obj.title">
-      <p class="text-sm md:text-lg w-72">
+      <p class="text-sm md:text-md sm:w-60 mb-3">
         {{ obj.description }}
       </p>
       <a v-if="obj['repo-name']" class="transition duration-500 text-blue-600 hover:text-blue-700" href="#">More info</a>
-      <div class="grid grid-cols-2 gap-2 mt-3">
-        <p v-if="obj['release-date']">{{ launchDate() }}</p>
+      <div class="grid grid-cols-2 gap-2">
+        <p class="md:w-40" v-if="obj['release-date']">{{ launchDate() }}</p>
         <div v-else></div>
         <Github
           v-if="obj.github_url"
-          class="ml-auto w-6 transition duration-500 opacity-30 hover:opacity-100"
+          class="ml-auto mt-auto w-6 transition duration-500 opacity-30 hover:opacity-100"
           :link="obj.github_url"
         />
       </div>
