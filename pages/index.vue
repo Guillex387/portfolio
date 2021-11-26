@@ -18,18 +18,18 @@
         />
         <!-- Skills part -->
         <section class="transition-left pb-6 md:pb-12 mx-5 md:m-0">
-          <Container v-if="releasedPrograms !== null" title="Programs">
-            <div class="flex justify-items-center justify-between flex-wrap">
-              <Program v-for="program in releasedPrograms" class="transition-left" :key="program.id" :obj="program" />
+          <Container class="z-index-10" v-if="releasedPrograms !== null" title="Programs">
+            <div class="flex justify-center md:justify-start flex-wrap">
+              <Program v-for="program in releasedPrograms" class="transition-left z-index-20" :key="program.id" :obj="program" />
             </div>
           </Container>
         </section>
         <section class="transition-right pb-6 md:pb-12 mx-5 md:m-0">
-          <Container v-if="prereleasedPrograms" title="Coming soon programs">
-            <div class="flex justify-items-center justify-between flex-wrap">
+          <Container class="z-index-10" v-if="prereleasedPrograms" title="Coming soon programs">
+            <div class="flex justify-center md:justify-start flex-wrap">
               <Program
                 v-for="program in prereleasedPrograms"
-                class="transition-right"
+                class="transition-right z-index-20"
                 :key="program.id"
                 transition="left"
                 :obj="program"
@@ -76,10 +76,9 @@ export default Vue.extend({
   },
   methods: {
     async getPrograms() {
-      let response = await fetch(`/api/programs`);
+      let response = await fetch('/api/programs');
       if (!response.ok) return alert('Error fetching data');
       let programs: Object[] = await response.json();
-      console.log(programs);
       let formattedPrograms: ProgramI[] = [];
       for (let i = 0; i < programs.length; i++) {
         const program = programs[i];
