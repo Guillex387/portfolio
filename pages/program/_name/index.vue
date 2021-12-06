@@ -3,18 +3,23 @@
     <div v-if="loading" class="h-screen flex items-center justify-center">
       <Spinner />
     </div>
-    <article class="mx-auto max-w-lg md:max-w-3xl lg:max-w-6xl" v-else-if="program">
-      <section class="transition-left pt-6 pb-6 md:pt-12 md:pb-12 mx-5 md:m-0">
-        <Container class="p-9" title="">
-          <Markdown :src="program.readme" />
-        </Container>
-      </section>
-      <section class="transition-right pb-6 md:pb-12 mx-5 md:m-0">
-        <!-- Last release -->
-      </section>
-    </article>
-    <div v-else class="h-screen flex items-center justify-center">
-      <h1 class="text-7xl font-bold text-white">Error {{ errorCode }}</h1>
+    <div v-else>
+      <div v-if="program">
+        <article class="min-h-screen mx-auto max-w-lg md:max-w-3xl lg:max-w-6xl">
+          <section class="transition-left py-6 md:py-12 mx-5 md:m-0">
+            <Container class="p-9" title="">
+              <Markdown :src="program.readme" />
+            </Container>
+          </section>
+          <section v-if="lastRelease" class="transition-right pb-6 md:pb-12 mx-5 md:m-0">
+            <Release :obj="lastRelease" />
+          </section>
+        </article>
+        <Footer />
+      </div>
+      <div v-else class="h-screen flex items-center justify-center">
+        <h1 class="text-7xl font-bold text-white">Error {{ errorCode }}</h1>
+      </div>
     </div>
   </div>
 </template>
@@ -24,13 +29,15 @@ import Vue from 'vue';
 import Spinner from '@/components/Spinner.vue';
 import Container from '@/components/Container.vue';
 import Markdown from '@/components/Markdown.vue';
-import { Release } from './releases.vue';
+import Footer from '@/components/Footer.vue';
+import { ReleaseI } from './releases.vue';
+import Release from '@/components/Release.vue';
 
 interface State {
   loading: boolean;
   errorCode: number;
   program: ProgramData | null;
-  lastRelease: Release | null;
+  lastRelease: ReleaseI | null;
 }
 interface ProgramData {
   title: string;
@@ -43,16 +50,12 @@ interface ProgramData {
 }
 
 export default Vue.extend({
-  data() {
+  data(): State {
     return {
-      loading: false,
-      program: {
-        readme: 'Hola mundo'
-      },
-      lastRelease: {
-        tag_name: 'v1.2.9'
-      },
-      errorCode: 230
+      loading: true,
+      program: null,
+      lastRelease: null,
+      errorCode: 0
     };
   },
   async asyncData(ctx) {
@@ -69,7 +72,9 @@ export default Vue.extend({
   components: {
     Spinner,
     Container,
-    Markdown
+    Markdown,
+    Footer,
+    Release
   },
   methods: {
     async fetchProgram(name: string) {

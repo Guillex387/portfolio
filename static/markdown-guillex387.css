@@ -278,6 +278,14 @@
   border-left: 0.25em solid rgba(255, 255, 255, 0.5);
 }
 
+.markdown-body ul {
+  list-style: outside;
+}
+
+.markdown-body ol {
+  list-style: decimal;
+}
+
 .markdown-body ul,
 .markdown-body ol {
   margin-top: 0;

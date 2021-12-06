@@ -1,7 +1,7 @@
 <template>
   <div>
     <link rel="stylesheet" href="/markdown-guillex387.css" />
-    <link rel="stylesheet" href="/atom-one-dark.css" />
+    <link rel="stylesheet" href="/github-dark.css" />
     <div class="markdown-body" v-html="this.render(this.src)"></div>
   </div>
 </template>

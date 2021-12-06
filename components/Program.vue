@@ -4,7 +4,7 @@
       <p class="text-sm md:text-md sm:w-60 mb-3">
         {{ obj.description }}
       </p>
-      <a v-if="obj['repo-name']" class="text-blue-600 hover:underline" href="#">More info</a>
+      <a v-if="obj['repo-name']" class="text-blue-600 hover:underline cursor-pointer" href="#">More info</a>
       <div class="grid grid-cols-2 gap-2">
         <p class="md:w-40" v-if="obj['release-date']">{{ launchDate() }}</p>
         <div v-else></div>
