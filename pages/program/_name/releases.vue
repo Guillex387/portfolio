@@ -7,7 +7,7 @@
       <div v-if="releases">
         <article class="min-h-screen mx-auto max-w-lg md:max-w-3xl lg:max-w-6xl pt-6 md:pt-12" v-if="releases">
           <div class="transition-left pb-6 md:pb-12 mx-5 md:m-0" v-for="release in releases" :key="release.tag_name">
-            <Relese :obj="release" />
+            <Release :obj="release" :releasesPage="undefined" />
           </div>
         </article>
         <Footer />
@@ -22,7 +22,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Footer from '@/components/Footer.vue';
-import Relese from '@/components/Release.vue';
+import Release from '@/components/Release.vue';
 
 interface State {
   loading: boolean;
@@ -43,11 +43,11 @@ export interface ReleaseI {
 export default Vue.extend({
   components: {
     Footer,
-    Relese
+    Release
   },
   data(): State {
     return {
-      loading: false,
+      loading: true,
       errorCode: 0,
       releases: null
     };
