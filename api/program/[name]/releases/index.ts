@@ -6,6 +6,7 @@ const githubAPI = new GithubAPI();
 const notionAPI = new NotionAPI();
 
 export default async (req: VercelRequest, res: VercelResponse) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   let programName = req.query.name.toString();
   let program = await notionAPI.getProgram(programName);
   if (!program) return res.status(404).send('Program not found');

@@ -1,7 +1,7 @@
 <template>
   <div class="p-4 text-white container-bg rounded-lg">
-    <h3 class="font-bold text-xl">{{ title }}</h3>
-    <hr class="my-2 opacity-50" />
+    <h3 v-if="title" class="font-bold text-xl">{{ title }}</h3>
+    <hr v-if="title" class="my-2 opacity-50" />
     <slot></slot>
   </div>
 </template>

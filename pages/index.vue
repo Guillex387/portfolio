@@ -4,7 +4,7 @@
       <Spinner />
     </div>
     <div v-else>
-      <article class="mx-auto max-w-lg md:max-w-3xl lg:max-w-6xl">
+      <article class="min-h-screen mx-auto max-w-lg md:max-w-3xl lg:max-w-6xl">
         <Title title="Guillex387" />
         <About
           text="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit debitis ratione consequuntur distinctio corporis deleniti
@@ -14,7 +14,7 @@
         beatae dolores harum odio ullam esse sed, dolore incidunt reiciendis iste, tempora consequuntur ad atque reprehenderit
         quibusdam velit nulla? Laborum corporis eaque totam amet ducimus quas rem id mollitia incidunt cupiditate, qui aut
         quisquam dolores maxime. Eum!"
-          logo="/qpt.png"
+          logo="/qpt-mini.png"
         />
         <!-- Skills part -->
         <section class="transition-left pb-6 md:pb-12 mx-5 md:m-0">
