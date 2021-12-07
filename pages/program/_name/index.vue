@@ -7,12 +7,12 @@
       <div v-if="program">
         <article class="min-h-screen mx-auto max-w-lg md:max-w-3xl lg:max-w-6xl">
           <section class="transition-left py-6 md:py-12 mx-5 md:m-0">
-            <Container class="p-9" title="">
+            <Container class="md:p-9" title="">
               <Markdown :src="program.readme" />
             </Container>
           </section>
           <section v-if="lastRelease" class="transition-right pb-6 md:pb-12 mx-5 md:m-0">
-            <Release :obj="lastRelease" />
+            <Release :obj="lastRelease" :releasesPage="`/program/${program['repo-name']}/releases`" />
           </section>
         </article>
         <Footer />
@@ -56,6 +56,18 @@ export default Vue.extend({
       program: null,
       lastRelease: null,
       errorCode: 0
+    };
+  },
+  head() {
+    let programName: string = (this as any).programAsync;
+    return {
+      title: programName,
+      meta: [
+        {
+          name: 'keywords',
+          content: `${programName}`
+        }
+      ]
     };
   },
   async asyncData(ctx) {

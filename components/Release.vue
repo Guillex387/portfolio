@@ -1,5 +1,5 @@
 <template>
-  <Container :title="release.tag_name">
+  <Container :title="obj.tag_name">
     <table class="table-auto w-full">
       <thead>
         <tr>
@@ -9,17 +9,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr :key="asset.name" v-for="asset in release.assets">
+        <tr :key="asset.name" v-for="asset in obj.assets">
           <td class="border border-opacity-50 bg-white bg-opacity-10 py-2 text-center">{{ asset.name }}</td>
           <td class="border border-opacity-50 bg-white bg-opacity-10 py-2 text-center">{{ sizeText(asset.size) }}</td>
           <td class="border border-opacity-50 bg-white bg-opacity-10 py-2 text-center">
-            <a class="text-blue-600 hover:underline cursor-pointer" @click="downloadFile(asset.browser_download_url, asset.name)"
-              >Download</a
-            >
+            <a class="text-blue-600 hover:underline cursor-pointer" :href="asset.browser_download_url" :download="asset.name">
+              Download
+            </a>
           </td>
         </tr>
       </tbody>
     </table>
+    <div v-if="releasesPage" class="mt-5">
+      <a class="text-blue-600 hover:underline cursor-pointer" :href="releasesPage">
+        More releases
+      </a>
+    </div>
   </Container>
 </template>
 
@@ -33,27 +38,10 @@ export default Vue.extend({
     Container
   },
   props: {
-    obj: Object
-  },
-  data() {
-    return {
-      release: this.obj as ReleaseI
-    };
+    obj: Object as () => ReleaseI,
+    releasesPage: Object as () => string | undefined
   },
   methods: {
-    async downloadFile(link: string, name: string) {
-      let response = await fetch(link);
-      if (!response.ok) {
-        alert('Error downloading file');
-        return null;
-      }
-      let data = await response.blob();
-      let blobUrl = URL.createObjectURL(data);
-      let htmlLink = document.createElement('a');
-      htmlLink.setAttribute('href', blobUrl);
-      htmlLink.setAttribute('download', name);
-      htmlLink.click();
-    },
     sizeText(size: number) {
       const formatSizes = [
         {
