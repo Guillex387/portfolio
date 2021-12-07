@@ -20,9 +20,11 @@
         </tr>
       </tbody>
     </table>
-    <a v-if="releasesPage" class="mt-3 text-blue-600 hover:underline cursor-pointer" :href="releasesPage">
-      More releases
-    </a>
+    <div v-if="releasesPage" class="mt-5">
+      <a class="text-blue-600 hover:underline cursor-pointer" :href="releasesPage">
+        More releases
+      </a>
+    </div>
   </Container>
 </template>
 

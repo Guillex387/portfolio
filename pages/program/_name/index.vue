@@ -58,6 +58,18 @@ export default Vue.extend({
       errorCode: 0
     };
   },
+  head() {
+    let programName: string = (this as any).programAsync;
+    return {
+      title: programName,
+      meta: [
+        {
+          name: 'keywords',
+          content: `${programName}`
+        }
+      ]
+    };
+  },
   async asyncData(ctx) {
     return { programAsync: ctx.params.name };
   },
