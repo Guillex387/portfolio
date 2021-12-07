@@ -4,17 +4,11 @@
       <Spinner />
     </div>
     <div v-else>
-      <article class="mx-auto max-w-lg md:max-w-3xl lg:max-w-6xl">
+      <article class="min-h-screen mx-auto max-w-lg md:max-w-3xl lg:max-w-6xl">
         <Title title="Guillex387" />
         <About
-          text="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit debitis ratione consequuntur distinctio corporis deleniti
-        eius voluptates cum dolor fuga voluptatibus facere culpa magni quisquam eos asperiores cupiditate assumenda, atque
-        dignissimos explicabo autem ex sed velit quo. Nesciunt vel corrupti quaerat officiis blanditiis, fugit neque iste
-        necessitatibus animi placeat aperiam illum, omnis, magni ea amet excepturi odit error repellat! Modi nisi eligendi maiores
-        beatae dolores harum odio ullam esse sed, dolore incidunt reiciendis iste, tempora consequuntur ad atque reprehenderit
-        quibusdam velit nulla? Laborum corporis eaque totam amet ducimus quas rem id mollitia incidunt cupiditate, qui aut
-        quisquam dolores maxime. Eum!"
-          logo="/qpt.png"
+          text="I'm Guillex387, an indie developer, I have developed programs related to cybersecurity, cryptography, web, desktop, cli, data structures, algorithms... All my projects are open source and completely free to use, the purpose of these is simply to help and to learn. In my opinion, programming is something unique, you can create and destroy worlds only with a keyboard, in a virtual world where you have to be creative, ingenious and intelligent."
+          logo="/qpt-mini.png"
         />
         <!-- Skills part -->
         <section class="transition-left pb-6 md:pb-12 mx-5 md:m-0">
@@ -72,6 +66,23 @@ export default Vue.extend({
       loading: true,
       releasedPrograms: null,
       prereleasedPrograms: null
+    };
+  },
+  head() {
+    return {
+      title: 'Guillex387',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            "I'm Guillex387, an indie developer, I have developed programs related to cybersecurity, cryptography, web, desktop, cli, data structures, algorithms... All my projects are open source and completely free to use, the purpose of these is simply to help and to learn. In my opinion, programming is something unique, you can create and destroy worlds only with a keyboard, in a virtual world where you have to be creative, ingenious and intelligent."
+        },
+        {
+          name: 'keywords',
+          content: 'Guillex387, indie, developer, open, source, qpt, software'
+        }
+      ]
     };
   },
   methods: {

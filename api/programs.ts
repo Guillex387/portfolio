@@ -6,6 +6,7 @@ const githubAPI = new GithubAPI();
 const notionAPI = new NotionAPI();
 
 export default async (req: VercelRequest, res: VercelResponse) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   let dbPrograms = await notionAPI.getPrograms();
   let filter = req.query.released;
   if (filter === 'true') {
