@@ -9,7 +9,7 @@
         <!-- Github logo -->
         <Github class="w-12 mx-4 transition duration-500 hover:text-white" link="https://github.com/Guillex387" />
         <!-- Instagram logo -->
-        <a class="w-12 mx-4 transition duration-500 hover:text-white" href="#">
+        <a class="w-12 mx-4 transition duration-500 hover:text-white" href="https://instagram.com/guillex387_official">
           <svg
             aria-hidden="true"
             focusable="false"
