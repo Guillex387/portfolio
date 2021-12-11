@@ -5,11 +5,15 @@
     </div>
     <div v-else>
       <article class="min-h-screen mx-auto max-w-lg md:max-w-3xl lg:max-w-6xl">
-        <Title title="Guillex387" />
-        <About
-          text="I'm Guillex387, an indie developer, I have developed programs related to cybersecurity, cryptography, web, desktop, cli, data structures, algorithms... All my projects are open source and completely free to use, the purpose of these is simply to help and to learn. In my opinion, programming is something unique, you can create and destroy worlds only with a keyboard, in a virtual world where you have to be creative, ingenious and intelligent."
-          logo="/qpt-mini.png"
-        />
+        <section class="transition-left flex justify-center md:justify-start mx-5 md:mx-0 py-6 md:py-12">
+          <Title title="Guillex387" />
+        </section>
+        <section class="transition-right pb-6 md:pb-12 mx-5 md:m-0">
+          <About
+            text="I'm Guillex387, an indie developer, I have developed programs related to cybersecurity, cryptography, web, desktop, cli, data structures, algorithms... All my projects are open source and completely free to use, the purpose of these is simply to help and to learn. In my opinion, programming is something unique, you can create and destroy worlds only with a keyboard, in a virtual world where you have to be creative, ingenious and intelligent."
+            logo="/qpt-mini.png"
+          />
+        </section>
         <!-- Skills part -->
         <section class="transition-left pb-6 md:pb-12 mx-5 md:m-0">
           <Container class="z-index-10" v-if="releasedPrograms !== null" title="Programs">
