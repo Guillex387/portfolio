@@ -23,6 +23,7 @@
 import Vue from 'vue';
 import Footer from '@/components/Footer.vue';
 import Release from '@/components/Release.vue';
+import Spinner from '@/components/Spinner.vue';
 
 interface State {
   loading: boolean;
@@ -43,7 +44,8 @@ export interface ReleaseI {
 export default Vue.extend({
   components: {
     Footer,
-    Release
+    Release,
+    Spinner
   },
   data(): State {
     return {

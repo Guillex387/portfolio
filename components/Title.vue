@@ -1,9 +1,7 @@
 <template>
-  <div class="flex justify-center md:justify-start mx-5 md:mx-0 py-6 md:py-12">
-    <h1 class="transition-left title text-6xl font-bold">
-      {{ title }}
-    </h1>
-  </div>
+  <h1 class="title text-6xl font-bold">
+    {{ title }}
+  </h1>
 </template>
 
 <script lang="ts">

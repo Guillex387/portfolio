@@ -1,7 +1,7 @@
 <template>
   <div class="m-1 text-white">
     <Container :title="obj.title">
-      <p class="text-sm md:text-md sm:w-60 mb-3">
+      <p class="line-clamp text-sm md:text-md sm:w-60 mb-3">
         {{ obj.description }}
       </p>
       <a class="text-blue-600 hover:underline cursor-pointer" v-if="obj['repo-name']" :href="`/program/${obj['repo-name']}`">
@@ -86,3 +86,14 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style scoped>
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 4.5em;
+  line-height: 1.5em;
+}
+</style>
