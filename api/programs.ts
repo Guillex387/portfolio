@@ -1,12 +1,12 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import NotionAPI from '../lib/db';
 import GithubAPI from '../lib/github';
+import { cors } from './index';
 
 const githubAPI = new GithubAPI();
 const notionAPI = new NotionAPI();
 
 export default async (req: VercelRequest, res: VercelResponse) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
   let dbPrograms = await notionAPI.getPrograms();
   let filter = req.query.released;
   if (filter === 'true') {
@@ -27,5 +27,5 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         });
     } else formattedPrograms.push(dbProgram);
   }
-  res.json(formattedPrograms);
+  cors(res).json(formattedPrograms);
 };
